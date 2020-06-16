@@ -11,8 +11,7 @@
   "scripts": {
     "dev": "manablox dev",
     "build": "manablox build",
-    "run": "node build/index.js",
-    "build:run": "manablox build -r"
+    "start": "node build/index.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
