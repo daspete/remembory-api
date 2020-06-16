@@ -12,7 +12,7 @@
     "dev": "manablox dev",
     "build": "manablox build",
     "build:run": "manablox build -r",
-    "start": "node build/index.js"
+    "start": "manablox build; node build/index.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
