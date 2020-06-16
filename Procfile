@@ -1,1 +1,1 @@
-Release: ./release-tasks.sh
+web: manablox build -r
