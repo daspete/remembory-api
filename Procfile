@@ -1,1 +1,0 @@
-web: manablox build -r
