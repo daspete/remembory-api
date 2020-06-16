@@ -1,0 +1,22 @@
+{
+  "name": "remembory-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/daspete/remembory-api.git",
+  "author": "daspete <daspetemail@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "13.x"
+  },
+  "scripts": {
+    "dev": "manablox dev",
+    "build": "manablox build",
+    "run": "node build/index.js",
+    "build:run": "manablox build -r"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "manablox-cli": "manablox/manablox-cli"
+  }
+}
