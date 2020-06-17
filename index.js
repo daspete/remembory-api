@@ -29,7 +29,8 @@ const StartServer = async () => {
 
     server.Use('/healthcheck', (req, res, next) => {
         res.json({
-            up: true
+            up: true,
+            timestamp: new Date().getTime()
         }) 
     })
 
