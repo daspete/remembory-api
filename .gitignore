@@ -10,3 +10,4 @@ yarn-error.log
 sw.*
 temp
 routes/*
+.env*

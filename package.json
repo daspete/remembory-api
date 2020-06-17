@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "manablox dev",
     "postinstall": "manablox build",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "deploy:production": "heroku config:set $(cat .env-production | sed '/^$/d; /#[[:print:]]*$/d'); git push heroku master"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
