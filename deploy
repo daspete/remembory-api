@@ -1,9 +1,7 @@
 #!/bin/bash
 
-heroku apps:destroy --app $1$2 --confirm $1$2 --remote $2
-heroku apps:create $1$2  --remote $2 --region eu
+heroku apps:destroy --app $1--$2 --confirm $1--$2 --remote $2
+heroku apps:create $1--$2  --remote $2 --region eu
 
-heroku config:set $(cat .env-$2 | sed '/^$/d; /#[[:print:]]*$/d') --app $1$2
+heroku config:set $(cat .env-$2 | sed '/^$/d; /#[[:print:]]*$/d') --app $1--$2
 git push $2 master
-
-echo https://$1-$2.herokuapp.com

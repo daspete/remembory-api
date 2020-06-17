@@ -13,10 +13,6 @@
     "postinstall": "manablox build",
     "start": "node build/index.js"
   },
-  "devDependencies": {
-    "heroku": "^7.42.1",
-    "manablox-cli": "manablox/manablox-cli"
-  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
@@ -25,6 +21,7 @@
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "helmet": "^3.23.1",
+    "manablox-cli": "manablox/manablox-cli",
     "mongodb": "^3.5.9",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
