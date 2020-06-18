@@ -1,10 +1,15 @@
-import DataProvider from '~~/services/mongodb/dataprovider'
+import passport from 'passport'
+import { GraphQLModule } from '@graphql-modules/core'
+
 import ExpressService from '~~/services/express'
+import GraphQLService from '~~/services/graphql'
+import AuthService from '~~/services/auth'
+
 import ExpressRouter from '~~/services/express/router'
 
-import databaseConfig from '~~/config/database'
 import expressConfig from '~~/config/express'
-
+import graphqlConfig from '~~/config/graphql'
+import authConfig from '~~/config/auth'
 
 const server = new ExpressService(expressConfig)
 
@@ -15,17 +20,24 @@ routeFiles.keys().map((key) => { routes.push({ name: key, route: routeFiles(key)
 const router = new ExpressRouter(server)
 router.AddRoutes(routes)
 
+// // create graph routes
+let graphs = []
+const graphFiles = require.context('./graphs', true, /index\.js$/)
+graphFiles.keys().map((key) => { graphs.push({ name: key.split('/').reverse()[1], module: graphFiles(key).default }) })
+graphs = graphs.filter((graph) => { return graph.module.autoload == true })
+graphs = graphs.map((graph) => { return new GraphQLModule(graph.module) })
 
 // Start process
 const StartServer = async () => {
-    const dataprovider = new DataProvider({
-        collection: 'membories'
+    new AuthService(authConfig)
+
+    const graphql = new GraphQLService({ 
+        config: graphqlConfig,
+        server: server,
+        modules: graphs
     })
 
-    // new AuthService(authConfig)
-    // const graphql = new GraphQLService({ ...graphqlConfig, server, graphs })
-
-    // server.Use(passport.initialize())
+    server.Use(passport.initialize())
 
     server.Use('/healthcheck', (req, res, next) => {
         res.json({
@@ -33,15 +45,9 @@ const StartServer = async () => {
             timestamp: new Date().getTime()
         }) 
     })
-
-    server.Get('/', async (req, res, next) => {
-        let membories = await dataprovider.Find()
-
-        res.json(membories)
-    })
-
-    // graphql.Start()
+    
     server.Start()
+    graphql.Start()
 }
 
 StartServer()
