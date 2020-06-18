@@ -1,4 +1,4 @@
 #!/bin/bash
 
 heroku config:set $(cat .env-$2 | sed '/^$/d; /#[[:print:]]*$/d') --app $1--$2
-git push $2 master
+git push $2 $3
