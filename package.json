@@ -11,7 +11,15 @@
   "scripts": {
     "dev": "manablox dev",
     "postinstall": "manablox build",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "deploy:develop": "./deploy remembory-api develop master",
+    "deploy:alpha": "./deploy remembory-api alpha master",
+    "deploy:beta": "./deploy remembory-api beta master",
+    "deploy:production": "./deploy remembory-api production master",
+    "log:develop": "heroku logs --tail --remote develop",
+    "log:alpha": "heroku logs --tail --remote alpha",
+    "log:beta": "heroku logs --tail --remote beta",
+    "log:production": "heroku logs --tail --remote production"
   },
   "dependencies": {
     "@graphql-modules/core": "^0.7.17",
